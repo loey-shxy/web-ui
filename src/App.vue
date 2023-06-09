@@ -1,12 +1,7 @@
-<script setup lang="ts">
-</script>
 
 <template>
-  <div>
-    
-  </div>
+  <MLayout />
 </template>
-
-<style scoped>
-
-</style>
+<script setup lang="ts">
+import MLayout from '@/components/m-layout/m-layout.vue'
+</script>
