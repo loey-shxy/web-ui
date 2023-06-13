@@ -1,0 +1,270 @@
+.underline {
+  text-decoration-line: underline;
+  text-decoration-color: #000;
+  &.scroll-left {
+    position: relative;
+    text-decoration-line: none;
+    overflow: hidden;
+    &::before {
+      content: attr(data-content);
+      position: absolute;
+      top: 0;
+      left: 0;
+      color: transparent;
+      white-space: nowrap;
+      text-decoration-line: underline;
+      text-decoration-style: wavy;
+      text-decoration-color: #000;
+    }
+    &:hover::before {
+      animation: scrollLeft 3s infinite linear;
+    }
+  }
+  &.jump-down {
+    text-decoration-color: transparent;
+    text-decoration-thickness: 1px;
+    cursor: pointer;
+    transition: all .5s;
+    text-underline-offset: 1px;
+    &:hover {
+      text-decoration-color: #000;
+      color: #000;
+      text-decoration-thickness: 3px;
+      text-underline-offset: 10px;
+    }
+  }
+}
+
+.underline-linear {
+  background: linear-gradient(90deg, #ff3c41, #fc0, #0ebeff);
+  &.fade-in {
+    background-size: 0 3px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    transition: 1s all;
+    color: #0cc;
+    &:hover {
+      background-size: 100% 3px;
+      color: #000;
+    }
+  }
+  &.change-color {
+    background: 
+      linear-gradient(90deg, #0cc, #0cc),
+      linear-gradient(90deg, #ff3c41, #fc0, #8500d8);
+    background-size: 100% 3px, 0 3px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%, 0 100%;
+    transition: .5s all;
+    color: #0cc;
+    &:hover {
+      background-size: 0 3px, 100% 3px;
+      color: #000;
+    }
+  }
+}
+
+.underline-follow {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 100%;
+    width: 0;
+    height: 100%;
+    border-bottom: 2px solid #000;
+    transition: .3s all linear;
+  }
+  &:hover::before {
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition-delay: .1s;
+  }
+  &:hover ~ &::before {
+    left: 0;
+  }
+}
+
+.text-color {
+  &.scroll-change {
+    color: transparent; // 文字颜色设置为透明
+    background: linear-gradient(-4deg, transparent, transparent 25%, #ffb6ff, #b344ff,transparent 75%, transparent);
+    /**
+    设置元素的背景（背景图片或颜色）是否延伸到边框、内边距盒子、内容盒子下面
+    background-color: text; 可以实现背景被裁剪成文字的前景色。使用了这个属性的意思是：
+    以区块内的文字作为裁剪区域向外裁剪，文字的背景即为区块的背景，文字之外的区域都将被裁减掉
+    */
+    -webkit-background-clip: text; 
+    background-size: 100% 400%;
+    background-position: center 0;
+    animation: bgPosition 6s infinite linear alternate;
+  }
+  &.hover-change {
+    background: linear-gradient(90deg, #fc0, #fc0);
+    background-size: 0 100px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    -webkit-background-clip: text;
+    transition: .6s all linear;
+    &:hover {
+      background-size: 100% 100%;
+      color: transparent;
+    }
+  }
+}
+
+.text-fadeIn {
+  &.normal {
+    background: linear-gradient(90deg, #fc0, #fc0);
+    background-size: 0 100px;
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    color: transparent;
+    -webkit-background-clip: text;
+    &:hover {
+      transition: .8s all linear;
+      background-size: 100% 100%;
+    }
+  }
+
+  &.simple {
+    background: 
+      linear-gradient(90deg, #ff5722, #ff5722),
+      linear-gradient(90deg, #aaa, #aaa);
+    background-size: 100% 100%, 0 100px;
+    background-repeat: no-repeat;
+    background-position: 100% 100%, 0 100%;
+    color: transparent;
+    -webkit-background-clip: text;
+    line-height: 3;
+    opacity: 0;
+    &:hover {
+      transition: 1.2s background .3s ease-out, .8s line-height ease-out, .6s opacity ease-in;
+      background-size: 0 100px, 100% 100%;
+      color: transparent;
+      line-height: 1;
+      opacity: 1;
+    }
+    &::before {
+      content: "";
+      position: fixed;
+      background: rgba($color: #000, $alpha: .8);
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: -1;
+      transition: .3s all linear;
+      opacity: 0;
+    }
+    &:hover::before {
+      opacity: 1;
+    }
+  }
+
+  &.complex {
+    .button {
+      top: 0;
+      left: 0;
+      width: 120px;
+      height: 64px;
+      line-height: 64px;
+      text-align: center;
+      border: 1px solid #eee;
+      cursor: pointer;
+      transition: .3s all;
+      z-index: 1;
+
+      &:hover {
+          background: #eee;
+      }
+    }
+    .button:hover ~ .complex-wrap {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      transition: .3s background linear;
+      background: rgba($color: #000, $alpha: .5);
+    }
+    .button:hover ~ p span {
+      opacity: 1;
+      color: #ddd;
+      transform: translateY(0) translateZ(0);
+      transition-property: transform, opacity;
+      transition-duration: 1s .2s;
+      transition-timing-function: cubic-bezier(.23, 1, .32, 1), linear;
+    }
+    
+    .button:hover ~ p span::after {
+      opacity: 0;
+      transition-property: opacity;
+      transition-duration: .4s;
+      transition-timing-function: cubic-bezier(.23, 1, .32, 1);
+    }
+
+    p {
+      position: relative;
+      margin: 50px auto;
+      width: 500px;
+      height: 250px;
+      font-size: 20px;
+      line-height: 1.5;
+      overflow: hidden;
+      z-index: 2;
+      span {
+        position: relative;
+        display: inline-block;
+        opacity: 0;
+        transform: translateY(15px) translateZ(0);
+        transition-property: transform, opacity;
+        transition-duration: .3s .2s;
+        transition-timing-function: cubic-bezier(.23, 1, .32, 1), linear;
+        &::before,
+        &::after {
+          position: absolute;
+          content: attr(data-text);
+          top: 0;
+          left: 0;
+          z-index: 1;
+          transform: translateZ(0);
+          will-change: opacity;
+        }
+        &::after {
+          color: #e62541;
+          transition-property: opacity;
+          transition-duration: .1s;
+          transition-timing-function: cubic-bezier(.23, 1, .32, 1);
+        }
+      }
+    }
+
+    @for $i from 1 to 21 {
+      p span:nth-child(#{$i}) {
+        transition-delay: #{$i * 0.04}s;
+    
+        &::after {
+          transition-delay: #{$i * 0.04 + 0.2}s;
+        }
+      }
+    }
+  }
+}
+
+
+
+@keyframes scrollLeft {
+  100% {
+    transform: translate(-100%, 0);
+  }
+}
+
+@keyframes bgPosition {
+  100% {
+    background-position: center 100%;
+  }
+}

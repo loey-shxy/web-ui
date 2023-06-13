@@ -2,4 +2,10 @@
   height: 100%;
   box-sizing: border-box;
   padding-top: 20px;
+  .el-menu-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 }

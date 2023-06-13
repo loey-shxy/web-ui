@@ -11,3 +11,12 @@ $dimensions: ('p': 'padding', 'm': 'margin');
     }
   }
 }
+
+@each $dim in $dimensions {
+  @for $i from 1 through 50 {
+    $size: $i * 1;
+    .#{nth($dim, 1)}-#{$size} {
+      #{nth($dim, 2)}: #{$size}px;
+    }
+  }
+}
