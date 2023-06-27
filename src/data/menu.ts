@@ -1,7 +1,7 @@
 export default [
   {
     menuId: 101,
-    menuName: '文字',
+    menuName: '文字特效',
     menuUri: '/text',
     menuCode: '',
     children: [
@@ -33,6 +33,12 @@ export default [
         menuId: 10104,
         menuName: '文字渐现（complex）',
         menuUri: '/text/fade-in-complex',
+        menuCode: ''
+      },
+      {
+        menuId: 10105,
+        menuName: '文字阴影',
+        menuUri: '/text/shadow',
         menuCode: ''
       }
     ]

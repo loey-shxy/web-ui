@@ -40,6 +40,14 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: '文字渐现'
     }
+  },
+  {
+    path: '/text/shadow',
+    name: 'text-shadow',
+    component: async () => await import('@/views/text-effect/text-shadow/text-shadow.vue'),
+    meta: {
+      title: '文字阴影'
+    }
   }
 ]
 
