@@ -1,46 +1,63 @@
 export default [
   {
     menuId: 101,
-    menuName: '文字特效',
+    menuName: 'Text',
     menuUri: '/text',
     menuCode: '',
     children: [
       {
         menuId: 10101,
-        menuName: '文字装饰',
+        menuName: 'Decoration',
         menuUri: '/text/decoration',
-        menuCode: ''
       },
       {
         menuId: 10102,
-        menuName: '文字滚动特效',
+        menuName: 'Scroll Animation',
         menuUri: '/text/scroll-animation',
-        menuCode: ''
       },
       {
         menuId: 10103,
-        menuName: 'background实现文字效果',
+        menuName: 'Background',
         menuUri: '/text/background-text-effect',
-        menuCode: ''
       },
       {
         menuId: 10104,
-        menuName: '文字渐现（simple）',
+        menuName: 'Fade In (Simple)',
         menuUri: '/text/fade-in-simple',
-        menuCode: ''
       },
       {
         menuId: 10104,
-        menuName: '文字渐现（complex）',
+        menuName: 'Fade In (Complex))',
         menuUri: '/text/fade-in-complex',
-        menuCode: ''
       },
       {
         menuId: 10105,
-        menuName: '文字阴影',
+        menuName: 'Shadow',
         menuUri: '/text/shadow',
-        menuCode: ''
       }
     ]
-  }
+  },
+  {
+    menuId: 102,
+    menuName: 'Animation',
+    menuUri: '/animation',
+    menuCode: '',
+    children: [
+      {
+        menuId: 10201,
+        menuName: 'Loading',
+        menuUri: '/animation/loading',
+      },
+      {
+        menuId: 10202,
+        menuName: 'Charging',
+        menuUri: '/animation/charging'
+      },
+      {
+        menuId: 10203,
+        menuName: 'Wave',
+        menuUri: '/animation/wave'
+      }
+    ]
+  },
 ]

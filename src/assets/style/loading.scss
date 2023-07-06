@@ -1,0 +1,208 @@
+@use 'sass:math';
+
+.bubbles-container {
+  --headColor: hsl(130, 75%, 75%);
+  --endColor: hsl(60, 75%, 40%);
+
+  position: relative;
+  width: 300px;
+  height: 300px;
+  padding: 100px;
+  filter: blur(3px) contrast(3);
+  background: #000;
+  animation: hueRotate 8s infinite linear;
+  .bubbles-circle {
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: conic-gradient(
+      var(--headColor) 0,
+      var(--endColor) 2%,
+      hsl(120, 75%, 70%),
+      hsl(110, 75%, 65%),
+      hsl(100, 75%, 60%),
+      hsl(90, 75%, 55%),
+      hsl(80, 75%, 50%),
+      hsl(70, 75%, 45%),
+      var(--endColor) 16%,
+      var(--endColor) 18%,
+      transparent 18%
+    );
+    -webkit-mask: radial-gradient(
+      transparent,
+      transparent 119px,
+      #000 120px,
+      #000
+    );
+    animation: bubbleRotate 4s infinite -700ms linear;
+
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--headColor);
+      top: 0;
+      left: 135px;
+      border-radius: 50%;
+    }
+    &::after {
+      background: var(--endColor);
+      left: unset;
+      top: 80px;
+      right: 10px;
+    }
+  }
+
+  .bubbles {
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    transform: translate(-50%, -50%);
+    left: 50%;
+    right: 50%;
+    border-radius: 50px;
+  }
+  .bubble {
+    position: absolute;
+    border-radius: 50%;
+    background: var(--endColor);
+  }
+}
+
+$bubbleCount: 200;
+@for $i from 1 through $bubbleCount {
+  .bubble:nth-child(#{$i}) {
+    --rotate: calc(#{math.div(360, $bubbleCount)} * #{$i} * 1deg);
+      --delayTime: calc(4000 * #{math.div($i, $bubbleCount)} * -1ms);
+      --width: 30px;
+      --scale: #{0.4 + math.div(random(10), 10)};
+      --x: #{-100 + random(200)}px;
+      --y: #{-100 + random(200)}px;
+      width: var(--width);
+      height: var(--width);
+      transform: 
+          rotateZ(var(--rotate)) 
+          translate(135px, 0);
+      opacity: 1;
+    animation: showAndHide 4000ms linear var(--delayTime) infinite;
+  }
+}
+
+
+@keyframes showAndHide {
+  0% {
+      transform: 
+          rotateZ(var(--rotate)) 
+          translate(135px, 0);
+      opacity: 0;
+  }
+  75% {
+      opacity: 0;
+  }
+  75.1% {
+      transform: 
+          rotateZ(var(--rotate)) 
+          translate(135px, 0)
+          scale(var(--scale));
+      opacity: 1;
+  }
+  100% {
+      transform: 
+          rotateZ(var(--rotate)) 
+          translate(calc(135px + var(--x)), var(--y))
+          scale(.2);
+      opacity: 0;
+  }
+}
+
+@keyframes bubbleRotate {
+  100% {
+      transform: rotate(-360deg);
+  }
+}
+
+@keyframes hueRotate {
+  100% {
+      filter: blur(3px) contrast(3) hue-rotate(360deg);
+  }
+}
+
+
+.loading-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin: auto;
+
+  .g-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #01fd28;
+      border-radius: 50%;
+    }
+  }
+}
+
+$loadingCount: 20;
+@for $i from 1 to $loadingCount + 1 {
+  .g-box:nth-child(#{$i}) {
+    --width: 20px;
+    width: var(--width);
+    height: var(--width);
+    margin-top: calc(var(--width) / -2);
+    margin-left: calc(var(--width) / -2);
+    transform: rotate(#{$i * 18}deg) translate(0, 120px);
+
+    &::before {
+      // filter (滤镜) 
+      // hue-rotate(deg) 给图像应用色相旋转，该值用来定义色环的度数。
+      filter: hue-rotate(#{math.div($i, 20) * 360}deg);
+      transform: scale(#{math.div($i, 20) * 1});
+      // will-change 提前告知浏览器你可能会对一个元素进行什么样的改变，这样它就可以提前设置适当的优化，避免了可能会对页面的响应性产生负面影响的启动成本
+      will-change: transform;
+    }
+  }
+}
+
+.g-steps {
+  animation: loadingRotate 2s steps(20) infinite;
+}
+
+.g-animation {
+  animation: loadingRotate 2s linear infinite;
+}
+
+@keyframes loadingRotate {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes loadingScale {
+  100% {
+    transform: scale(0);
+  }
+}
+
+@keyframes scaleAndHueRotate {
+  100% {
+    transform: scale(0);
+    filter: hue-rotate(360deg);
+  }
+}
+

@@ -6,7 +6,7 @@ const routes: RouteRecordRaw[] = [
     name: 'text-decoration',
     component: async () => await import('@/views/text-effect/text-decoration/text-decoration.vue'),
     meta: {
-      title: '文字装饰'
+      title: 'Decoration'
     }
   },
   {
@@ -14,7 +14,7 @@ const routes: RouteRecordRaw[] = [
     name: 'text-scroll-animation',
     component: async () => await import('@/views/text-effect/text-animation/text-animation.vue'),
     meta: {
-      title: '文字滚动特效'
+      title: 'Scroll Animation'
     }
   },
   {
@@ -22,7 +22,7 @@ const routes: RouteRecordRaw[] = [
     name: 'background-text-effect',
     component: async () => await import('@/views/text-effect/background-effect/background-effect.vue'),
     meta: {
-      title: 'background实现花式文字效果'
+      title: 'Background'
     }
   },
   {
@@ -30,7 +30,7 @@ const routes: RouteRecordRaw[] = [
     name: 'text-fade-in-simple',
     component: async () => await import('@/views/text-effect/fade-in/fade-in-simple.vue'),
     meta: {
-      title: '文字渐现'
+      title: 'Fade In (Simple)'
     }
   },
   {
@@ -38,7 +38,7 @@ const routes: RouteRecordRaw[] = [
     name: 'text-fade-in-complex',
     component: async () => await import('@/views/text-effect/fade-in/fade-in-complex.vue'),
     meta: {
-      title: '文字渐现'
+      title: 'Fade In (Complex)'
     }
   },
   {
@@ -46,7 +46,7 @@ const routes: RouteRecordRaw[] = [
     name: 'text-shadow',
     component: async () => await import('@/views/text-effect/text-shadow/text-shadow.vue'),
     meta: {
-      title: '文字阴影'
+      title: 'Shadow'
     }
   }
 ]

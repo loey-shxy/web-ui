@@ -1,0 +1,63 @@
+.wave {
+  width: 200px;
+  height: 200px;
+}
+#canvas {
+  box-sizing: content-box;
+  padding: 5px;
+  background-color: #fff;
+  border-radius: 100%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 10px solid rgba(154, 205, 50, .8);  
+}
+
+@keyframes rotate {
+  0% {
+    transform: translate(-50%, 0) rotateZ(0deg);
+  }
+  50% {
+    transform: translate(-50%, -2%) rotateZ(180deg);
+  }
+  100% {
+    transform: translate(-50%, 0) rotateZ(360deg);
+  }
+}
+
+.css {
+  position: relative;
+  background-color: rgb(154, 205, 50);
+  border-radius: 50%;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 50%;
+    background-color: rgba($color: #fff, $alpha: 0.6);
+    border-radius: 45%;
+    transform: translate(-50%, -70%) rotate(0);
+    z-index: 10;
+    animation: rotate3 6s linear infinite;
+  }
+  &::after {
+    border-radius: 47%;
+    background-color: rgba($color: #fff, $alpha: .9);
+    transform: translate(-50%, -70%) rotate(0);
+    animation: rotate3 10s linear -5s infinite;
+    z-index: 20;
+  }
+}
+
+@keyframes rotate3 {
+  50% {
+    transform: translate(-50%, -72%) rotate(180deg);
+  }
+  100% {
+    transform: translate(-50%, -70%) rotate(360deg);
+  }
+}
