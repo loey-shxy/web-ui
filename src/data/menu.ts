@@ -57,7 +57,17 @@ export default [
         menuId: 10203,
         menuName: 'Wave',
         menuUri: '/animation/wave'
-      }
+      },
+      {
+        menuId: 10204,
+        menuName: 'Step',
+        menuUri: '/animation/step'
+      },
+      {
+        menuId: 10205,
+        menuName: 'Particle Heart',
+        menuUri: '/animation/particle-heart'
+      },
     ]
   },
 ]

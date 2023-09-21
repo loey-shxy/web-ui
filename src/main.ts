@@ -1,11 +1,14 @@
 import { createApp } from 'vue'
 import App from './App.vue'
 import createRouterFunc from './router/index'
+import { createPinia } from 'pinia'
 
 import '@/assets/style/index.scss'
 import 'amfe-flexible/index.js'
 import nprogress from 'nprogress'
 import 'nprogress/nprogress.css'
+import numberDirective from './directives/number'
+import permissionDirective from './directives/permission'
 
 const app = createApp(App)
 const router = await createRouterFunc()
@@ -29,6 +32,14 @@ router.afterEach((to, from) => {
   nprogress.done()
 })
 
-app
-.use(router)
-.mount('#app')
+const boostrap = async () => {
+  app
+    .use(router)
+    .use(createPinia())
+    .mount('#app')
+
+  numberDirective(app)
+  permissionDirective(app)
+}
+
+boostrap()

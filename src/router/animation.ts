@@ -24,7 +24,23 @@ const routes: RouteRecordRaw[] = [
     meta: {
       title: 'Wave'
     }
-  }
+  },
+  {
+    path: '/animation/step',
+    name: 'animation-step',
+    component: async () => await import('@/views/animation/step-function/step-function.vue'),
+    meta: {
+      title: 'Step'
+    }
+  },
+  {
+    path: '/animation/particle-heart',
+    name: 'animation-particle-heart',
+    component: async () => await import('@/views/animation/particle-heart/particle-heart.vue'),
+    meta: {
+      title: 'Particle Heart'
+    }
+  },
 ]
 
 export default routes
